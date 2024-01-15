@@ -17,23 +17,3 @@ app.use(require('./routes/payment'))
 app.listen(port, () => {
         console.log(`Connected to port : ${port} 🌟`)
 })
-// shut down server
-const shutdown = () => {
-  server.close((err) => {
-    if (err) {
-      // eslint-disable-next-line no-console
-      console.error(err);
-      process.exitCode = 1;
-    }
-    process.exit();
-  });
-};
-process.on('SIGINT', () => {
-
-  console.info('Got SIGINT (aka ctrl-c in docker). Graceful shutdown ', new Date().toISOString());
-  shutdown();
-});
-process.on('SIGTERM', () => {
-  console.info('Got SIGTERM (docker container stop). Graceful shutdown ', new Date().toISOString());
-  shutdown();
-});
